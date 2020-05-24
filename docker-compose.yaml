@@ -1,0 +1,46 @@
+version: "3.6"
+services:
+  redis-master:
+    build:
+      context: ./master
+      dockerfile: dockerfile
+    container_name: my-redis-master
+    ports:
+    - "6379:6379"
+    networks:
+
+  redis-slaver-1:
+    build:
+      context: ./slave_1
+      dockerfile: dockerfile
+    container_name: my-redis-slave-1
+    ports:
+    - "6380:6379"
+  redis-slaver-2:
+    build:
+      context: ./slave_2
+      dockerfile: dockerfile
+    container_name: my-redis-slave-2
+    ports:
+    - "6381:6379"
+  redis-sentinel-1:
+    build:
+      context: ./sentinel_1
+      dockerfile: dockerfile
+    container_name: my-redis-sentinel-1
+    ports:
+    - "26379:26379"
+  redis-sentinel-2:
+    build:
+      context: ./sentinel_2
+      dockerfile: dockerfile
+    container_name: my-redis-sentinel-2
+    ports:
+    - "26380:26379"
+  redis-sentinel-3:
+    build:
+      context: ./sentinel_3
+      dockerfile: dockerfile
+    container_name: my-redis-sentinel-3
+    ports:
+    - "26381:26379"
